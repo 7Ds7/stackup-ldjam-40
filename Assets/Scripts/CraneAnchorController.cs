@@ -15,7 +15,14 @@ public class CraneAnchorController : MonoBehaviour {
 	void Update () {
 		var pos = Input.mousePosition;
 		pos = Camera.main.ScreenToWorldPoint(pos);
-		transform.position = new Vector3 (pos.x, transform.position.y, transform.position.z);
+		//transform.position = new Vector3 (pos.x, transform.position.y, transform.position.z).Lerp;
+		transform.position = Vector3.Lerp(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3(pos.x, transform.position.y, transform.position.z), 0.5f*Time.deltaTime);
+
+
+//		float smoothTime = 0.3F;
+//		Vector3 velocity = Vector3.zero;
+//		Vector3 targetPosition = gameObject.transform.TransformPoint;
+//		transform.position = Vector3.SmoothDamp( new Vector3 (pos.x, transform.position.y, transform.position.z) , pos, ref velocity, smoothTime);
 
 		int int_y = (int) pos.y;
 		Debug.Log (int_y);
