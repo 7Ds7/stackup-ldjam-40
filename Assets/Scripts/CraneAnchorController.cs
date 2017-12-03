@@ -5,10 +5,13 @@ using UnityEngine;
 public class CraneAnchorController : MonoBehaviour {
 
 	Tentacle tentacle;
-
+	LineRenderer lineRenderer;
+	GameObject claw;
 	// Use this for initialization
 	void Start () {
 		tentacle = gameObject.GetComponent<Tentacle>();
+		lineRenderer = GetComponent<LineRenderer> ();
+		claw = GameObject.Find ("Claw");
 	}
 	
 	// Update is called once per frame
@@ -18,14 +21,10 @@ public class CraneAnchorController : MonoBehaviour {
 		//transform.position = new Vector3 (pos.x, transform.position.y, transform.position.z).Lerp;
 		transform.position = Vector3.Lerp(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3(pos.x, transform.position.y, transform.position.z), 0.5f*Time.deltaTime);
 
-
-//		float smoothTime = 0.3F;
-//		Vector3 velocity = Vector3.zero;
-//		Vector3 targetPosition = gameObject.transform.TransformPoint;
-//		transform.position = Vector3.SmoothDamp( new Vector3 (pos.x, transform.position.y, transform.position.z) , pos, ref velocity, smoothTime);
+		claw.transform.position = lineRenderer.GetPosition(lineRenderer.positionCount-1);
 
 		int int_y = (int) pos.y;
-		Debug.Log (int_y);
+
 		switch (int_y)
 		{
 		case 5:
@@ -62,7 +61,7 @@ public class CraneAnchorController : MonoBehaviour {
 			tentacle._setting.length = 1.1f;
 			break;
 		default:
-			print ("Incorrect intelligence level.");
+			print ("bamm");
 			break;
 		}
 

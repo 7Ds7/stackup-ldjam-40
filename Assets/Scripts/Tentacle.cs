@@ -107,7 +107,7 @@ public class Tentacle : MonoBehaviour {
 	void Start () {
 		// StartParts() ;
 		//_setting = new Setting(10 , 5 , 0.5f , -0.5f ,0.02f , 2f) ;
-		_tentacleData = new TentacleData(20 , 2 , 0.5f , 0.2f);
+		_tentacleData = new TentacleData(20 , 5 , 0.5f , 0.2f);
 		lineRenderer = GetComponent<LineRenderer> ();
 
 	}
