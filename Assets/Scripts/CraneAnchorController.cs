@@ -11,7 +11,7 @@ public class CraneAnchorController : MonoBehaviour {
 	void Start () {
 		tentacle = gameObject.GetComponent<Tentacle>();
 		lineRenderer = GetComponent<LineRenderer> ();
-		claw = GameObject.Find ("Claw");
+		claw = GameObject.Find ("CraneClaw");
 	}
 	
 	// Update is called once per frame
@@ -21,7 +21,8 @@ public class CraneAnchorController : MonoBehaviour {
 		//transform.position = new Vector3 (pos.x, transform.position.y, transform.position.z).Lerp;
 		transform.position = Vector3.Lerp(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3(pos.x, transform.position.y, transform.position.z), 0.5f*Time.deltaTime);
 
-		claw.transform.position = lineRenderer.GetPosition(lineRenderer.positionCount-1);
+		Vector3 posfin = lineRenderer.GetPosition(lineRenderer.positionCount-1);
+		claw.transform.position = new Vector3 (posfin.x - 0.25f, posfin.y - 0.2f, posfin.z);
 
 		int int_y = (int) pos.y;
 
