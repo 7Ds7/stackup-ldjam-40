@@ -16,8 +16,11 @@ public class PieceController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (gLeft && gRight) {
-			Debug.Log ("entraaa");
 			transform.SetParent(GameObject.Find("CraneClaw").transform);
+		}
+
+		if (!gLeft && !gRight) {
+			transform.parent = null;
 		}
 			
 //		if (grabbed) {
