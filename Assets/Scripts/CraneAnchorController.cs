@@ -21,7 +21,7 @@ public class CraneAnchorController : MonoBehaviour {
 		var pos = Input.mousePosition;
 		pos = Camera.main.ScreenToWorldPoint(pos);
 		//transform.position = new Vector3 (pos.x, transform.position.y, transform.position.z).Lerp;
-		transform.position = Vector3.Lerp(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3(pos.x, transform.position.y, 1f), 0.5f*Time.deltaTime);
+		transform.position = Vector3.Lerp(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3(pos.x, transform.position.y, 0f), 0.5f*Time.deltaTime);
 
 		Vector3 posfin = lineRenderer.GetPosition(lineRenderer.positionCount-1);
 		claw.transform.position = new Vector3 (posfin.x - 0.25f, posfin.y - 0.2f, 1f);
