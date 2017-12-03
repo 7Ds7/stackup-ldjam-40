@@ -30,6 +30,7 @@ public class DrawShapeController : MonoBehaviour {
 	public void GenerateShape() {
 		int ind = Random.Range(0, shapes.Length);
 		GameObject shape = Instantiate (Resources.Load (shapes[ind]) as GameObject);
+		shape.transform.position = new Vector3 (transform.position.x, transform.position.y + 10, transform.position.z);
 		generating = false;
 	}
 
