@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ClawController : MonoBehaviour {
 
-	bool closed = false;
+	bool closing = false;
 	GameObject drawShape;
 	GameObject clawLeft;
 	GameObject clawRight;
@@ -24,34 +24,33 @@ public class ClawController : MonoBehaviour {
 //			Debug.Log (hit.collider);
 //		}
 
-		//clawLeft.transform.Rotate(0, 0, Time.deltaTime);
-//		Debug.Log (clawLeft.transform.localRotation);
-//		Debug.Log (clawLeft.transform.rotation.z);
-		Debug.Log (clawLeft.transform.rotation.z);
+
 
 
 		if (Input.GetMouseButton (0) ) {
 			
 			Debug.Log ("Cenas");
 
-			closed = true;
-			Debug.Log (clawLeft.transform.rotation);
-			Debug.Log (clawLeft.transform.eulerAngles.z);
+			closing = true;
+
 			if (clawLeft.transform.rotation.z <= 0) {
-				clawLeft.transform.Rotate (clawLeft.transform.rotation.x, clawLeft.transform.rotation.y, clawLeft.transform.rotation.z + 1f);
-				clawRight.transform.Rotate (clawRight.transform.rotation.x, clawRight.transform.rotation.y, clawRight.transform.rotation.z - 1f);
+				if (!clawLeft.GetComponent<ClawHit>().hit)
+					clawLeft.transform.Rotate (clawLeft.transform.rotation.x, clawLeft.transform.rotation.y, clawLeft.transform.rotation.z + 1f);
+				if (!clawRight.GetComponent<ClawHit>().hit)
+					clawRight.transform.Rotate (clawRight.transform.rotation.x, clawRight.transform.rotation.y, clawRight.transform.rotation.z - 1f);
 			}
 			//clawLeft.transform.Rotate(0, 0, Time.deltaTime);
 			//gameObject.GetComponent<Renderer> ().material.color = Color.green;
 		} else {
-			if (clawLeft.transform.rotation.z > -0.34f ) {
+			if (clawLeft.transform.rotation.z > -0.34f )
 				clawLeft.transform.Rotate (clawLeft.transform.rotation.x, clawLeft.transform.rotation.y, clawLeft.transform.rotation.z - 1f);
+			if ( clawRight.transform.rotation.z < 0.34f)
 				clawRight.transform.Rotate (clawRight.transform.rotation.x, clawRight.transform.rotation.y, clawRight.transform.rotation.z + 1f);
-			}
+
 		}
 		
 		if (Input.GetMouseButtonUp (0)) {
-			closed = false;
+			closing = false;
 			Debug.Log ("closed");
 			//gameObject.GetComponent<Renderer> ().material.color = Color.black;
 		}
