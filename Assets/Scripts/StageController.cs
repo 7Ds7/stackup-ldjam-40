@@ -22,9 +22,17 @@ public class StageController : MonoBehaviour {
 	//The start and finish positions for the interpolation
 	private Vector3 _startPosition;
 	private Vector3 _endPosition;
+	private Vector3 _startPosition_background;
+	private Vector3 _endPosition_background;
+
+	private GameObject background;
 
 	//The Time.time value when we started the interpolation
 	private float _timeStartedLerping;
+
+	void Start() {
+		background = GameObject.Find ("SceneBackground");
+	}
 
 	/// <summary>
 	/// Called to begin the linear interpolation
@@ -38,6 +46,9 @@ public class StageController : MonoBehaviour {
 		_startPosition = transform.position;
 		//_endPosition = transform.position + Vector3.down*distanceToMove;
 		_endPosition = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
+
+		_startPosition_background = background.transform.position;
+		_endPosition_background = new Vector3 (_startPosition_background.x, _startPosition_background.y - 1f, _startPosition_background.z);
 
 	}
 
@@ -69,6 +80,7 @@ public class StageController : MonoBehaviour {
 			//throughout a single lerp-processs (ie. they won't change until we hit the space-bar again
 			//to start another lerp)
 			transform.position = Vector3.Lerp (_startPosition, _endPosition, percentageComplete);
+			background.transform.position = Vector3.Lerp (_startPosition_background, _endPosition_background, percentageComplete);
 
 			//When we've completed the lerp, we set _isLerping to false
 			if(percentageComplete >= 1.0f)
