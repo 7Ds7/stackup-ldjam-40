@@ -6,11 +6,11 @@ public class DrawShapeController : MonoBehaviour {
 
 	private string[] shapes;
 	public bool generating = false;
-	public float waitTime = 7f;
+	public float waitTime = 10f;
 	float timer;
 	// Use this for initialization
 	void Start () {
-		shapes = new string[] {"LShape", "SquareShape"};
+		shapes = new string[] {"LShape", "SquareShape", "TShapeWood", "LShapeWood", "IShapeWood", "SShapeWood", "CrossShapeWood", "SquareShapeWood", "UShapeWood", "MShapeWood"};
 	}
 
 	// Update is called once per frame
@@ -18,17 +18,18 @@ public class DrawShapeController : MonoBehaviour {
 
 		timer += Time.deltaTime;
 		if (timer > waitTime) {
-			if (generating) {
+			//if (generating) {
 				Debug.Log ("Timer is done");
 				GenerateShape ();
 				timer = 0f;
-			}
+			//}
 		}
 		
 	}
 
 	public void GenerateShape() {
-		int ind = Random.Range(0, shapes.Length);
+		Debug.Log (shapes.Length);
+		int ind = Random.Range(0, shapes.Length - 1);
 		GameObject shape = Instantiate (Resources.Load (shapes[ind]) as GameObject);
 		shape.transform.position = new Vector3 (transform.position.x, transform.position.y + 10, transform.position.z);
 		generating = false;

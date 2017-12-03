@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class StageController : MonoBehaviour {
-	public float waitTime = 10f;
+	public float waitTime = 30f;
 	float timer;
 
 	/// <summary>

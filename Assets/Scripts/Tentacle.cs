@@ -139,10 +139,16 @@ public class Tentacle : MonoBehaviour {
 	void OnDrawGizmos() {
 		Gizmos.color = Color.green ;
 
+		for (int i = 0; i < _tentacleData.nodes.Count - 1; i++) {
+			Gizmos.DrawLine(_tentacleData.nodes[i].GetVec() , _tentacleData.nodes[i+1].GetVec());
+		}
+	}
+
+	void FixedUpdate() {
+
 		lineRenderer.positionCount = _tentacleData.nodes.Count - 1;
 
 		for (int i = 0; i < _tentacleData.nodes.Count - 1; i++) {
-			Gizmos.DrawLine(_tentacleData.nodes[i].GetVec() , _tentacleData.nodes[i+1].GetVec());
 			lineRenderer.SetPosition(i, _tentacleData.nodes[i].GetVec());
 		}
 	}

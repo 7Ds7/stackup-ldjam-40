@@ -28,9 +28,6 @@ public class ClawController : MonoBehaviour {
 
 
 		if (Input.GetMouseButton (0) ) {
-			
-			Debug.Log ("Cenas");
-
 			closing = true;
 
 			if (clawLeft.transform.rotation.z <= 0) {

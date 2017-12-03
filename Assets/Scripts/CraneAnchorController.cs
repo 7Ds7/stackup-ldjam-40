@@ -64,7 +64,8 @@ public class CraneAnchorController : MonoBehaviour {
 			tentacle._setting.length = 1.1f;
 			break;
 		default:
-			print ("bamm");
+//			Debug.Log ("bamm");
+//			Debug.Log (int_y);
 			break;
 		}
 
