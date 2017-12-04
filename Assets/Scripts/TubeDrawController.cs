@@ -40,7 +40,7 @@ public class TubeDrawController : MonoBehaviour {
 	void GenerateShape() {
 		int ind = Random.Range(0, shapes.Length - 1);
 		GameObject shape = Instantiate (Resources.Load (shapes[ind]) as GameObject);
-		shape.transform.position = new Vector3 (transform.position.x, transform.position.y + 1f, -1.5f);
+		shape.transform.position = new Vector3 (transform.position.x, transform.position.y + 2f, -1.5f);
 		GameObject.Find ("Ground").GetComponent<StageController> ().currentTurn += 1;
 		generating = false;
 	}
