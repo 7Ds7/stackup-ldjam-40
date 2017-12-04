@@ -20,7 +20,6 @@ public class ClawHit : MonoBehaviour {
 	}
 
 	void OnCollisionExit2D(Collision2D coll) {
-		
 		if (coll.gameObject.tag == "Shape") {
 			hit = false;
 			if (gameObject.name == "ClawLeft")
