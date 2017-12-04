@@ -54,17 +54,17 @@ public class ClawController : MonoBehaviour {
 		
 	}
 
-	void OnTriggerStay2D(Collider2D col) {
-		
-		Debug.Log (col);
-//		if (col.tag == "Shape" && closed == true) {
-//			col.gameObject.GetComponent<PieceController> ().grabbed = true;
-//		} else if (col.tag == "Shape" && closed == false) {
-//			col.gameObject.GetComponent<PieceController> ().grabbed = false;
+//	void OnTriggerStay2D(Collider2D col) {
+//		
+//		Debug.Log (col);
+////		if (col.tag == "Shape" && closed == true) {
+////			col.gameObject.GetComponent<PieceController> ().grabbed = true;
+////		} else if (col.tag == "Shape" && closed == false) {
+////			col.gameObject.GetComponent<PieceController> ().grabbed = false;
+////
+////		}
 //
-//		}
-
-	}
+//	}
 
 		
 }
