@@ -7,7 +7,10 @@ public class ClawHit : MonoBehaviour {
 	public bool hit = false;
 
 	void OnCollisionEnter2D(Collision2D coll) {
-		if (coll.gameObject.tag == "Shape") {
+		float y_coll = Camera.main.ScreenToWorldPoint (coll.gameObject.transform.position).y;
+		float y_claw = Camera.main.ScreenToWorldPoint (gameObject.transform.position).y;
+
+		if (coll.gameObject.tag == "Shape" && y_claw > y_coll) {
 			hit = true;
 			if (gameObject.name == "ClawLeft")
 				coll.gameObject.GetComponent<PieceController> ().gLeft = true;
@@ -17,6 +20,7 @@ public class ClawHit : MonoBehaviour {
 	}
 
 	void OnCollisionExit2D(Collision2D coll) {
+		
 		if (coll.gameObject.tag == "Shape") {
 			hit = false;
 			if (gameObject.name == "ClawLeft")
@@ -25,4 +29,9 @@ public class ClawHit : MonoBehaviour {
 				coll.gameObject.GetComponent<PieceController> ().gRight= false;
 		}
 	}
+
+//	void OnDrawGizmos() {
+//		Gizmos.color = Color.white;
+//		Gizmos.DrawWireCube (GetComponent<PolygonCollider2D> ().bounds.center, GetComponent<PolygonCollider2D> ().bounds.size);
+//	}
 }

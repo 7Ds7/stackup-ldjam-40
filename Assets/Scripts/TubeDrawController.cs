@@ -41,4 +41,12 @@ public class TubeDrawController : MonoBehaviour {
 		shape.transform.position = new Vector3 (transform.position.x, transform.position.y + 1f, -1.5f);
 		GameObject.Find ("Ground").GetComponent<StageController> ().currentTurn += 1;
 	}
+
+	IEnumerator GeneratingOn() {
+		Debug.Log("Before Waiting 2 seconds");
+		yield return new WaitForSeconds(2);
+		GenerateShape ();
+		yield return null;
+		Debug.Log("After Waiting 2 Seconds");
+	}
 }

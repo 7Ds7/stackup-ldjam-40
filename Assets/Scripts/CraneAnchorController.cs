@@ -24,7 +24,14 @@ public class CraneAnchorController : MonoBehaviour {
 		//transform.position = new Vector3 (pos.x, transform.position.y, transform.position.z).Lerp;
 
 		//transform.position = Vector3.Lerp (new Vector3 (transform.position.x, transform.position.y, transform.position.z), new Vector3 (pos.x, transform.position.y, 0f), 0.5f * Time.deltaTime);
-		transform.position =  new Vector3 (pos.x, transform.position.y, 0f);
+
+		if (pos.x < 8.5f && pos.x > -8.5f)
+			transform.position = new Vector3 (pos.x, transform.position.y, 0f);
+		else if (pos.x < 8.5f) {
+			transform.position = new Vector3 (-8.5f, transform.position.y, 0f);
+		} else if (pos.x > -8.5f) {
+			transform.position = new Vector3 (8.5f, transform.position.y, 0f);
+		}
 
 		Vector3 posfin = lineRenderer.GetPosition (lineRenderer.positionCount - 1);
 		claw.transform.position = new Vector3 (posfin.x - 0.25f, posfin.y - 0.2f, -1f);
