@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class StageController : MonoBehaviour {
-	public float waitTime = 30f;
+	public float waitTime = 3000f;
 	float timer;
+	public int turnsToMove;
+	public int currentTurn;
 
 	/// <summary>
 	/// The time taken to move from the start to finish positions
@@ -31,6 +33,8 @@ public class StageController : MonoBehaviour {
 	private float _timeStartedLerping;
 
 	void Start() {
+		turnsToMove = 5;
+		currentTurn = 1;
 		background = GameObject.Find ("SceneBackground");
 	}
 
@@ -54,13 +58,17 @@ public class StageController : MonoBehaviour {
 
 	void Update()
 	{
-		timer += Time.deltaTime;
-		if (timer > waitTime) {
-			Debug.Log ("Timer is done");
+		if (currentTurn == turnsToMove) {
 			StartLerping();
-			//transform.position = Vector3.Lerp(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3(transform.position.x, transform.position.y - 10f, transform.position.z), 0.5f*Time.deltaTime);
-			timer = 0f;
+			currentTurn = 1;
 		}
+//		timer += Time.deltaTime;
+//		if (timer > waitTime) {
+//			Debug.Log ("Timer is done");
+
+//			//transform.position = Vector3.Lerp(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3(transform.position.x, transform.position.y - 10f, transform.position.z), 0.5f*Time.deltaTime);
+//			timer = 0f;
+//		}
 
 	}
 
