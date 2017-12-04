@@ -4,9 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class Intro : MonoBehaviour
 {
-    public void NextLevelButton(int index)
+    public void LoadGame()
     {
-        SceneManager.LoadScene(index);
+		SceneManager.LoadScene (1);
     }
 
 

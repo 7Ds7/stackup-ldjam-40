@@ -24,7 +24,6 @@ public class TubeDrawController : MonoBehaviour {
 	}
 
 
-	
 	// Update is called once per frame
 	void FixedUpdate () {
 		if (animatorTube.GetCurrentAnimatorStateInfo(0).IsName("TubeDown") && generated == false ){
@@ -33,26 +32,6 @@ public class TubeDrawController : MonoBehaviour {
 		}
 	}
 
-//	void OnCollisionEnter2D(Collision2D coll) {
-//		if (coll.gameObject.tag == "Shape") {
-//			generated = true;
-//			animatorTube.SetBool ("Generating", !generated);
-//		}
-//	}
-//
-//	void OnCollisionStay2D(Collision2D coll) {
-//		if (coll.gameObject.tag == "Shape") {
-//			generated = true;
-//			animatorTube.SetBool ("Generating", !generated);
-//		}
-//	}
-//		
-//	void OnCollisionExit2D(Collision2D coll) {
-//		if (coll.gameObject.tag == "Shape") {
-//			generated = false;
-//			animatorTube.SetBool ("Generating", !generated);
-//		}
-//	}
 
 	void GenerateShape() {
 		int ind = Random.Range(0, shapes.Length - 1);
@@ -81,6 +60,9 @@ public class TubeDrawController : MonoBehaviour {
 			yield return new WaitForSeconds(0.2f);
 		}
 		cameraScript.startTimer = true;
+		foreach (GameObject go in GameObject.FindGameObjectsWithTag("Tutorial")) {
+			Destroy (go);
+		}
 		StartCoroutine (GenerateOnGoing ());
 		yield return null;
 	}

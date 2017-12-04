@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CatController : MonoBehaviour {
 
@@ -65,7 +66,8 @@ public class CatController : MonoBehaviour {
 			GetComponent<BoxCollider2D> ().enabled = false;
 			GetComponentInChildren<BoxCollider2D> ().enabled = false;
 			GetComponent<PlatformEffector2D> ().enabled = false;
-
+			Camera.main.GetComponent<CameraScript> ().gameOver = true;
+			StartCoroutine (GameOverDelay ());
 
 		}
 	}
@@ -88,6 +90,18 @@ public class CatController : MonoBehaviour {
 		the_scale.x *= -1;
 		transform.localScale = the_scale;
 
+	}
+
+	IEnumerator GameOverDelay() {
+		yield return StartCoroutine(GameOver(1.7f));
+	}
+		
+
+	IEnumerator GameOver(float delay)
+	{
+		yield return new WaitForSeconds(delay);
+		Debug.Log ("GAME OVER");
+		SceneManager.LoadScene (2);
 	}
 
 }
