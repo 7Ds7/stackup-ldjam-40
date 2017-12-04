@@ -41,6 +41,7 @@ public class CameraScript : MonoBehaviour {
 	public bool startTimer;
 	private float timeToSlide;
 	public bool gameOver;
+	public bool winState;
 	private bool started;
 
 
@@ -49,6 +50,7 @@ public class CameraScript : MonoBehaviour {
 
 	void Start() {
 		startTimer = false;
+		winState = false;
 		gameOver = false;
 		started = false;
 		timeToSlide = 2f;
@@ -103,7 +105,7 @@ public class CameraScript : MonoBehaviour {
 
 	IEnumerator Slide() {
 		Debug.Log ("Slide");
-		while (!gameOver) {
+		while (!gameOver && !winState) {
 			StartLerping ();
 			yield return new WaitForSeconds (timeToSlide);
 		} 

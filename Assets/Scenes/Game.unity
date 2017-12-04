@@ -556,7 +556,7 @@ GameObject:
   - component: {fileID: 254045207}
   m_Layer: 8
   m_Name: Cat
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4602,6 +4602,7 @@ MonoBehaviour:
   firstPosition: {x: 0, y: 0, z: 0}
   startTimer: 0
   gameOver: 0
+  winState: 0
 --- !u!1 &958978797
 GameObject:
   m_ObjectHideFlags: 0
@@ -8684,7 +8685,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1532931354}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.52, y: 100.54001, z: -10}
+  m_LocalPosition: {x: -0.52, y: 98.49, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 514855560}
@@ -8775,6 +8776,7 @@ GameObject:
   - component: {fileID: 1551752538}
   - component: {fileID: 1551752539}
   - component: {fileID: 1551752540}
+  - component: {fileID: 1551752541}
   m_Layer: 0
   m_Name: moon
   m_TagString: Untagged
@@ -8789,7 +8791,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1551752537}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.05, y: 100.3, z: -10}
+  m_LocalPosition: {x: 0, y: 98.24999, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 514855560}
@@ -8854,6 +8856,17 @@ CircleCollider2D:
   m_Offset: {x: -0.12, y: -0.01}
   serializedVersion: 2
   m_Radius: 1.6
+--- !u!114 &1551752541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1551752537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e053985974d44de4a6807c3e51011a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1557019525
 GameObject:
   m_ObjectHideFlags: 0
