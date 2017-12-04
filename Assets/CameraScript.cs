@@ -37,10 +37,12 @@ public class CameraScript : MonoBehaviour {
 	GameObject tube;
 
 
+	public Vector3 firstPosition;
 	public bool startTimer;
 	private float timeToSlide;
 	public bool gameOver;
 	private bool started;
+
 
 	//The Time.time value when we started the interpolation
 	private float _timeStartedLerping;
@@ -49,12 +51,11 @@ public class CameraScript : MonoBehaviour {
 		startTimer = false;
 		gameOver = false;
 		started = false;
-		timeToSlide = 20f;
+		timeToSlide = 2f;
 		craneAnchor = GameObject.Find ("CraneAnchor");
 		crane = GameObject.Find ("Crane");
 		tube = GameObject.Find ("TubeDraw");
-
-
+		firstPosition = gameObject.transform.position;
 	}
 
 	/// <summary>
