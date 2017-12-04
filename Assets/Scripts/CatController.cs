@@ -19,12 +19,21 @@ public class CatController : MonoBehaviour {
 	// What layer is ground
 	public LayerMask WhatIsGround;
 
+	public bool stopped;
+
 	void Start() {
 		catAnimator = GetComponent<Animator> ();
+		stopped = false;
 
 	}
 
 	void FixedUpdate() {
+		if (stopped) {
+			GetComponent<Rigidbody2D> ().velocity = new Vector2 (0,  GetComponent<Rigidbody2D> ().velocity.y);
+			GetComponent<Rigidbody2D>().AddForce(new Vector2(0, -50f));
+			return;
+		}
+			
 		grounded = Physics2D.OverlapCircle (ground_check.position, ground_radius, WhatIsGround);
 
 		catAnimator.SetBool ("Ground", grounded);
@@ -44,6 +53,10 @@ public class CatController : MonoBehaviour {
 	}
 
 	void Update() {
+		if (stopped) {
+			return;
+		}
+			
 		if (grounded && Input.GetKeyDown (KeyCode.Space)) {
 			catAnimator.SetBool ("Ground", false);
 			GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jump_force));
