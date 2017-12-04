@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class TubeDrawController : MonoBehaviour {
 
-
 	private string[] shapes;
 	public bool generated = true;
-
 	private Animator animatorTube;
 
 	void Start () {
@@ -17,12 +15,9 @@ public class TubeDrawController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (animatorTube.GetCurrentAnimatorStateInfo(0).IsName("TubeDown") && !generated)
-		{
+		if (animatorTube.GetCurrentAnimatorStateInfo(0).IsName("TubeDown") && !generated){
 			GenerateShape ();
 		}
-		
-
 	}
 
 	void OnCollisionStay2D(Collision2D coll) {
@@ -32,7 +27,6 @@ public class TubeDrawController : MonoBehaviour {
 		}
 	}
 		
-
 	void OnCollisionExit2D(Collision2D coll) {
 		if (coll.gameObject.tag == "Shape") {
 			generated = false;
@@ -41,7 +35,6 @@ public class TubeDrawController : MonoBehaviour {
 	}
 
 	void GenerateShape() {
-		
 		int ind = Random.Range(0, shapes.Length - 1);
 		GameObject shape = Instantiate (Resources.Load (shapes[ind]) as GameObject);
 		shape.transform.position = new Vector3 (transform.position.x, transform.position.y + 2, -1.5f);

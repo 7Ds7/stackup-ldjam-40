@@ -27,7 +27,7 @@ public class CraneAnchorController : MonoBehaviour {
 
 
 		Vector3 posfin = lineRenderer.GetPosition (lineRenderer.positionCount - 1);
-		claw.transform.position = new Vector3 (posfin.x - 0.25f, posfin.y - 0.2f, 1f);
+		claw.transform.position = new Vector3 (posfin.x - 0.25f, posfin.y - 0.2f, -1f);
 
 		int int_y = (int) pos.y;
 
