@@ -9,8 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Intro.unity
     guid: 8c8120f44223a344cb8c38b13263373f
   - enabled: 1
-    path: Assets/Scenes/BinaryUnit.unity
+    path: Assets/Scenes/Game.unity
     guid: ee093958164d54551b01554d0ce03fdc
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 5bf07ff8a7ea347d685683eb141258ea
+  - enabled: 1
+    path: Assets/Scenes/Win.unity
+    guid: 16b3e605514c0403889637e3128bea97

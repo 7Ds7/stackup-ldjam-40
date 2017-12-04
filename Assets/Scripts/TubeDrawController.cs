@@ -17,7 +17,7 @@ public class TubeDrawController : MonoBehaviour {
 		shapes = new string[] {"LShape", "SquareShape", "TShapeWood", "LShapeWood", "IShapeWood", "SShapeWood", "CrossShapeWood", "SquareShapeWood", "UShapeWood", "MShapeWood"};
 		animatorTube = GetComponent<Animator> ();
 		cameraScript = Camera.main.GetComponent<CameraScript> ();
-		batch = 25;
+		batch = 30;
 		generated_count = 0;
 		StartCoroutine (GenerateFirstBatch ());
 		StartCoroutine(DrawSingle());

@@ -80,6 +80,7 @@ public class CatController : MonoBehaviour {
 		if (grounded && Input.GetKeyDown (KeyCode.Space)) {
 			catAnimator.SetBool ("Ground", false);
 			rigidBody.AddForce(new Vector2(0, jump_force));
+			gameObject.GetComponent<AudioSource> ().Play ();
 		}
 	}
 
