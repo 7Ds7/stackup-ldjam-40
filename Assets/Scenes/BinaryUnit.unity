@@ -2915,10 +2915,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waitTime: 5
-  turnsToMove: 0
-  currentTurn: 0
   timeTakenDuringLerp: 1
   distanceToMove: 10
+  startTimer: 1
+  gameOver: 0
 --- !u!1 &1787182597
 GameObject:
   m_ObjectHideFlags: 0

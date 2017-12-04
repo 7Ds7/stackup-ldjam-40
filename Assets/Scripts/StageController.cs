@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//0.02
+//0.3333333
 public class StageController : MonoBehaviour {
 	public float waitTime = 3000f;
 	float timer;
@@ -80,6 +81,7 @@ public class StageController : MonoBehaviour {
 	}
 
 	IEnumerator Slide() {
+		Debug.Log ("Slide");
 		while (!gameOver) {
 			StartLerping ();
 			yield return new WaitForSeconds (timeToSlide);
