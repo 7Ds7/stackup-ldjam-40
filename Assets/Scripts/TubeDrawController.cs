@@ -12,17 +12,17 @@ public class TubeDrawController : MonoBehaviour {
 	private int batch;
 	private int generated_count;
 
+	private StageController stageController;
 	void Start () {
 		shapes = new string[] {"LShape", "SquareShape", "TShapeWood", "LShapeWood", "IShapeWood", "SShapeWood", "CrossShapeWood", "SquareShapeWood", "UShapeWood", "MShapeWood"};
 		animatorTube = GetComponent<Animator> ();
-		batch = 100;
+		stageController = GameObject.Find ("Ground").GetComponent<StageController> ();
+		batch = 30;
 		generated_count = 0;
-		FirstBatch ();
+		StartCoroutine (GenerateFirstBatch ());
 	}
 
-	void FirstBatch() {
-		StartCoroutine (GeneratingOn ());
-	}
+
 	
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -57,18 +57,34 @@ public class TubeDrawController : MonoBehaviour {
 		int ind = Random.Range(0, shapes.Length - 1);
 		GameObject shape = Instantiate (Resources.Load (shapes[ind]) as GameObject);
 		shape.transform.position = new Vector3 (transform.position.x, transform.position.y + 2.2f, -1.5f);
-		GameObject.Find ("Ground").GetComponent<StageController> ().currentTurn += 1;
+
 	}
 
-	IEnumerator GeneratingOn() {
+	IEnumerator GenerateFirstBatch() {
 		while (batch > 0) {
 			generated_count += 1;
 			int ind = Random.Range(0, shapes.Length - 1);
 			GameObject shape = Instantiate (Resources.Load (shapes[ind]) as GameObject);
-			shape.transform.position = new Vector3 (transform.position.x + Random.Range(0, 7f), transform.position.y + 100f, -1.5f);
+			shape.transform.position = new Vector3 (transform.position.x + Random.Range(2.5f, 8f), transform.position.y + 10f, -1.5f);
 			batch--;
-			yield return new WaitForSeconds(0.5f);
-		} 
+			yield return new WaitForSeconds(0.2f);
+		}
+		stageController.startTimer = true;
+		StartCoroutine (GenerateOnGoing ());
+		yield return null;
+
+	}
+
+	IEnumerator GenerateOnGoing() {
+		while (!stageController.gameOver) {
+			generated_count += 1;
+			int ind = Random.Range(0, shapes.Length - 1);
+			GameObject shape = Instantiate (Resources.Load (shapes[ind]) as GameObject);
+			shape.transform.position = new Vector3 (transform.position.x + Random.Range(2.5f, 8f), transform.position.y + 200f, -1.5f);
+			batch--;
+			yield return new WaitForSeconds(Random.Range(5f, 10f));
+		}
+
 		yield return null;
 
 	}

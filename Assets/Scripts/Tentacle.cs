@@ -149,7 +149,7 @@ public class Tentacle : MonoBehaviour {
 		lineRenderer.positionCount = _tentacleData.nodes.Count - 1;
 
 		for (int i = 0; i < _tentacleData.nodes.Count - 1; i++) {
-			lineRenderer.SetPosition(i, _tentacleData.nodes[i].GetVec());
+			lineRenderer.SetPosition(i, new Vector3(_tentacleData.nodes[i].GetVec().x, _tentacleData.nodes[i].GetVec().y, -1f));
 		}
 	}
 }

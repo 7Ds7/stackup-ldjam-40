@@ -5,8 +5,6 @@ using UnityEngine;
 public class StageController : MonoBehaviour {
 	public float waitTime = 3000f;
 	float timer;
-	public int turnsToMove;
-	public int currentTurn;
 
 	/// <summary>
 	/// The time taken to move from the start to finish positions
@@ -29,12 +27,19 @@ public class StageController : MonoBehaviour {
 
 	private GameObject background;
 
+	public bool startTimer;
+	private float timeToSlide;
+	public bool gameOver;
+	private bool started;
+
 	//The Time.time value when we started the interpolation
 	private float _timeStartedLerping;
 
 	void Start() {
-		turnsToMove = 5;
-		currentTurn = 1;
+		startTimer = false;
+		gameOver = false;
+		started = false;
+		timeToSlide = 20f;
 		background = GameObject.Find ("SceneBackground");
 
 	}
@@ -60,9 +65,9 @@ public class StageController : MonoBehaviour {
 
 	void Update()
 	{
-		if (currentTurn == turnsToMove) {
-			StartLerping();
-			currentTurn = 1;
+		if (startTimer && !started) {
+			started = true;
+			StartCoroutine (Slide ());
 		}
 //		timer += Time.deltaTime;
 //		if (timer > waitTime) {
@@ -72,6 +77,14 @@ public class StageController : MonoBehaviour {
 //			timer = 0f;
 //		}
 
+	}
+
+	IEnumerator Slide() {
+		while (!gameOver) {
+			StartLerping ();
+			yield return new WaitForSeconds (timeToSlide);
+		} 
+		yield return null;
 	}
 
 	//We do the actual interpolation in FixedUpdate(), since we're dealing with a rigidbody
