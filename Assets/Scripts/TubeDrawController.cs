@@ -9,9 +9,19 @@ public class TubeDrawController : MonoBehaviour {
 
 	private Animator animatorTube;
 
+	private int batch;
+	private int generated_count;
+
 	void Start () {
 		shapes = new string[] {"LShape", "SquareShape", "TShapeWood", "LShapeWood", "IShapeWood", "SShapeWood", "CrossShapeWood", "SquareShapeWood", "UShapeWood", "MShapeWood"};
 		animatorTube = GetComponent<Animator> ();
+		batch = 100;
+		generated_count = 0;
+		FirstBatch ();
+	}
+
+	void FirstBatch() {
+		StartCoroutine (GeneratingOn ());
 	}
 	
 	// Update is called once per frame
@@ -51,10 +61,15 @@ public class TubeDrawController : MonoBehaviour {
 	}
 
 	IEnumerator GeneratingOn() {
-		Debug.Log("Before Waiting 2 seconds");
-		yield return new WaitForSeconds(2);
-
+		while (batch > 0) {
+			generated_count += 1;
+			int ind = Random.Range(0, shapes.Length - 1);
+			GameObject shape = Instantiate (Resources.Load (shapes[ind]) as GameObject);
+			shape.transform.position = new Vector3 (transform.position.x + Random.Range(0, 7f), transform.position.y + 100f, -1.5f);
+			batch--;
+			yield return new WaitForSeconds(0.5f);
+		} 
 		yield return null;
-		Debug.Log("After Waiting 2 Seconds");
+
 	}
 }
