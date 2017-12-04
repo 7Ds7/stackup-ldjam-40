@@ -27,15 +27,7 @@ public class StageController : MonoBehaviour {
 	private Vector3 _startPosition_background;
 	private Vector3 _endPosition_background;
 
-	private Vector3 _startPosition_buildingLeft;
-	private Vector3 _endPosition_buildingLeft;
-
-	private Vector3 _startPosition_buildingRight;
-	private Vector3 _endPosition_buildingRight;
-
 	private GameObject background;
-	private GameObject buildingLeft;
-	private GameObject buildingRight;
 
 	//The Time.time value when we started the interpolation
 	private float _timeStartedLerping;
@@ -44,8 +36,7 @@ public class StageController : MonoBehaviour {
 		turnsToMove = 5;
 		currentTurn = 1;
 		background = GameObject.Find ("SceneBackground");
-		buildingLeft = GameObject.Find ("BuildingLeft");
-		buildingRight = GameObject.Find ("BuildingRight");
+
 	}
 
 	/// <summary>
@@ -64,11 +55,6 @@ public class StageController : MonoBehaviour {
 		_startPosition_background = background.transform.position;
 		_endPosition_background = new Vector3 (_startPosition_background.x, _startPosition_background.y - 1f, _startPosition_background.z);
 
-		_startPosition_buildingLeft = buildingLeft.transform.position;
-		_endPosition_buildingLeft = new Vector3 (_startPosition_buildingLeft.x, _startPosition_buildingLeft.y - 1f, _startPosition_buildingLeft.z);
-
-		_startPosition_buildingRight = buildingRight.transform.position;
-		_endPosition_buildingRight = new Vector3 (_startPosition_buildingRight.x, _startPosition_buildingRight.y - 1f, _startPosition_buildingRight.z);
 
 	}
 
@@ -105,8 +91,8 @@ public class StageController : MonoBehaviour {
 			//to start another lerp)
 			transform.position = Vector3.Lerp (_startPosition, _endPosition, percentageComplete);
 			background.transform.position = Vector3.Lerp (_startPosition_background, _endPosition_background, percentageComplete);
-			buildingLeft.transform.position = Vector3.Lerp (_startPosition_buildingLeft, _endPosition_buildingLeft, percentageComplete);
-			buildingRight.transform.position = Vector3.Lerp (_startPosition_buildingRight, _endPosition_buildingRight, percentageComplete);
+//			buildingLeft.transform.position = Vector3.Lerp (_startPosition_buildingLeft, _endPosition_buildingLeft, percentageComplete);
+//			buildingRight.transform.position = Vector3.Lerp (_startPosition_buildingRight, _endPosition_buildingRight, percentageComplete);
 
 			//When we've completed the lerp, we set _isLerping to false
 			if(percentageComplete >= 1.0f)
