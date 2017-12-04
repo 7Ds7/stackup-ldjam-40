@@ -19,6 +19,7 @@ public class PieceController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+		
 		if (gLeft && gRight) {
 			transform.SetParent(GameObject.Find("CraneClaw").transform);
 		}
@@ -27,54 +28,25 @@ public class PieceController : MonoBehaviour {
 			transform.parent = null;
 		}
 
-		if ( gameObject.GetComponent<SpriteRenderer> ().isVisible) {
-			Debug.Log("Is Visible");
-			wasVisible = true;
-		}
 
-		if (!I_Can_See() && wasVisible) {
-			//gameObject.GetComponent<Rigidbody2D> ().isKinematic = true;
-			Debug.Log ("Set some to kinema");
-			gameObject.GetComponent<SpriteRenderer> ().color = Color.red;
-
-			gameObject.GetComponent<Rigidbody2D> ().freezeRotation = true;
-
-		}
-
-			
-//		if (grabbed) {
-//			transform.localPosition = GameObject.Find("Claw").transform.localPosition;
-//		}
 	}
 
 
 
 	void FixedUpdate () {
-		if (gameObject.GetComponent<Rigidbody2D> ().freezeRotation) {
+		Vector3 screenPos = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+		//Debug.Log("target is " + screenPos.y + " pixels from the left");
+
+		if (screenPos.y < -100f) {
 			gameObject.GetComponent<Rigidbody2D> ().isKinematic = true;
 			gameObject.GetComponent<Rigidbody2D> ().velocity = Vector3.zero;
+			gameObject.GetComponent<SpriteRenderer> ().color = Color.red;
+			gameObject.GetComponent<Rigidbody2D> ().freezeRotation = true;
 		}
-	}
 
-	private bool I_Can_See() {
-		Plane[] planes = GeometryUtility.CalculateFrustumPlanes (Camera.main);
-
-		if (GeometryUtility.TestPlanesAABB (planes, gameObject.GetComponent<SpriteRenderer>().bounds))
-			return true;
-		else
-			return false;
-	}
-
-	private bool IsTargetVisible(Camera c,GameObject go)
-	{
-		var planes = GeometryUtility.CalculateFrustumPlanes(c);
-		var point = go.transform.position;
-		foreach (var plane in planes)
-		{
-			if (plane.GetDistanceToPoint(point) < 0)
-				return false;
+		if (screenPos.y < -1000f) {
+			Destroy (gameObject);
 		}
-		return true;
 	}
 
 

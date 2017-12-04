@@ -1,15 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Intro : MonoBehaviour
 {
     public void NextLevelButton(int index)
     {
-        Application.LoadLevel(index);
+        SceneManager.LoadScene(index);
     }
 
-    public void NextLevelButton(string levelName)
-    {
-        Application.LoadLevel(levelName);
-    }
+
 }
