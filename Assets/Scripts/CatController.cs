@@ -14,7 +14,7 @@ public class CatController : MonoBehaviour {
 	public Transform ground_check;
 
 	float ground_radius = 0.2f;
-	public float jump_force = 700f;
+	public float jump_force = 750f;
 
 	// What layer is ground
 	public LayerMask WhatIsGround;

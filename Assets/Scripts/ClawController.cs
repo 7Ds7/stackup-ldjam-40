@@ -32,17 +32,17 @@ public class ClawController : MonoBehaviour {
 
 			if (clawLeft.transform.rotation.z <= 0) {
 				if (!clawLeft.GetComponent<ClawHit>().hit)
-					clawLeft.transform.Rotate (clawLeft.transform.rotation.x, clawLeft.transform.rotation.y, clawLeft.transform.rotation.z + 1f);
+					clawLeft.transform.Rotate (clawLeft.transform.rotation.x, clawLeft.transform.rotation.y, clawLeft.transform.rotation.z + 2.5f);
 				if (!clawRight.GetComponent<ClawHit>().hit)
-					clawRight.transform.Rotate (clawRight.transform.rotation.x, clawRight.transform.rotation.y, clawRight.transform.rotation.z - 1f);
+					clawRight.transform.Rotate (clawRight.transform.rotation.x, clawRight.transform.rotation.y, clawRight.transform.rotation.z - 2.5f);
 			}
 			//clawLeft.transform.Rotate(0, 0, Time.deltaTime);
 			//gameObject.GetComponent<Renderer> ().material.color = Color.green;
 		} else {
-			if (clawLeft.transform.rotation.z > -0.34f )
-				clawLeft.transform.Rotate (clawLeft.transform.rotation.x, clawLeft.transform.rotation.y, clawLeft.transform.rotation.z - 1f);
-			if ( clawRight.transform.rotation.z < 0.34f)
-				clawRight.transform.Rotate (clawRight.transform.rotation.x, clawRight.transform.rotation.y, clawRight.transform.rotation.z + 1f);
+			if (clawLeft.transform.rotation.z > -0.54f )
+				clawLeft.transform.Rotate (clawLeft.transform.rotation.x, clawLeft.transform.rotation.y, clawLeft.transform.rotation.z - 2.5f);
+			if ( clawRight.transform.rotation.z < 0.54f)
+				clawRight.transform.Rotate (clawRight.transform.rotation.x, clawRight.transform.rotation.y, clawRight.transform.rotation.z + 2.5f);
 
 		}
 		
