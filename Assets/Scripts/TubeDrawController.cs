@@ -17,9 +17,10 @@ public class TubeDrawController : MonoBehaviour {
 		shapes = new string[] {"LShape", "SquareShape", "TShapeWood", "LShapeWood", "IShapeWood", "SShapeWood", "CrossShapeWood", "SquareShapeWood", "UShapeWood", "MShapeWood"};
 		animatorTube = GetComponent<Animator> ();
 		stageController = GameObject.Find ("Ground").GetComponent<StageController> ();
-		batch = 30;
+		batch = 1000;
 		generated_count = 0;
 		StartCoroutine (GenerateFirstBatch ());
+		stageController.startTimer = true;
 	}
 
 
@@ -65,7 +66,7 @@ public class TubeDrawController : MonoBehaviour {
 			generated_count += 1;
 			int ind = Random.Range(0, shapes.Length - 1);
 			GameObject shape = Instantiate (Resources.Load (shapes[ind]) as GameObject);
-			shape.transform.position = new Vector3 (transform.position.x + Random.Range(2.5f, 8f), transform.position.y + 10f, -1.5f);
+			shape.transform.position = new Vector3 (transform.position.x + Random.Range(2.5f, 8f), transform.position.y + 100f, -1.5f);
 			batch--;
 			yield return new WaitForSeconds(0.2f);
 		}
@@ -80,7 +81,7 @@ public class TubeDrawController : MonoBehaviour {
 			generated_count += 1;
 			int ind = Random.Range(0, shapes.Length - 1);
 			GameObject shape = Instantiate (Resources.Load (shapes[ind]) as GameObject);
-			shape.transform.position = new Vector3 (transform.position.x + Random.Range(2.5f, 8f), transform.position.y + 200f, -1.5f);
+			shape.transform.position = new Vector3 (transform.position.x + Random.Range(2.5f, 8f), transform.position.y + 100f, -1.5f);
 			batch--;
 			yield return new WaitForSeconds(Random.Range(5f, 10f));
 		}
