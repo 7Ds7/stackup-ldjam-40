@@ -25,10 +25,6 @@ public class CraneAnchorController : MonoBehaviour {
 		
 		Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		Vector3 pos_viewport = Camera.main.ScreenToViewportPoint (Input.mousePosition);
-//		Debug.Log ("Poop +" + Camera.main.WorldToViewportPoint (Input.mousePosition).y);
-//		Debug.Log ("BEEP +" + Camera.main.WorldToViewportPoint (cam_first_pos).y);
-//		Debug.Log (Camera.main.ScreenToWorldPoint(cam_first_pos));
-
 
 		//transform.position = new Vector3 (pos.x, transform.position.y, transform.position.z).Lerp;
 
@@ -42,8 +38,10 @@ public class CraneAnchorController : MonoBehaviour {
 			transform.position = new Vector3 (8.5f, transform.position.y, -1f);
 		}
 
-		Vector3 posfin = lineRenderer.GetPosition (lineRenderer.positionCount - 1);
-		claw.transform.position = new Vector3 (posfin.x - 0.25f, posfin.y - 0.2f, -1f);
+		if (lineRenderer.positionCount > 0) {
+			Vector3 posfin = lineRenderer.GetPosition (lineRenderer.positionCount - 1);
+			claw.transform.position = new Vector3 (posfin.x - 0.25f, posfin.y - 0.2f, -1f);
+		}
 
 //		if (pos_viewport.y <= 0.5f && pos_viewport.y >= 0.2f)
 //			tentacle._setting.length = ((pos_viewport.y - 0.6f) * 1) / (0.15f - 0.6f);

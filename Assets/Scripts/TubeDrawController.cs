@@ -90,7 +90,7 @@ public class TubeDrawController : MonoBehaviour {
 			generated_count += 1;
 			int ind = Random.Range(0, shapes.Length - 1);
 			GameObject shape = Instantiate (Resources.Load (shapes[ind]) as GameObject);
-			shape.transform.position = new Vector3 (transform.position.x + Random.Range(2.5f, 8f), transform.position.y + 100f, -1.5f);
+			shape.transform.position = new Vector3 (transform.position.x + Random.Range(2.5f, 8f), transform.position.y + 10f, -1.5f);
 			batch--;
 			yield return new WaitForSeconds(Random.Range(5f, 10f));
 		}

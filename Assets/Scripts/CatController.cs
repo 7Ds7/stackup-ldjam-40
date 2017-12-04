@@ -8,7 +8,7 @@ public class CatController : MonoBehaviour {
 	bool facing_right = true;
 
 	Animator catAnimator;
-
+	Rigidbody2D rigidBody;
 	bool grounded = false;
 
 	public Transform ground_check;
@@ -24,7 +24,7 @@ public class CatController : MonoBehaviour {
 	void Start() {
 		catAnimator = GetComponent<Animator> ();
 		stopped = false;
-
+		rigidBody = GetComponent<Rigidbody2D> ();
 	}
 
 	void FixedUpdate() {
@@ -38,10 +38,10 @@ public class CatController : MonoBehaviour {
 
 		catAnimator.SetBool ("Ground", grounded);
 
-		catAnimator.SetFloat ("vSpeed", GetComponent<Rigidbody2D> ().velocity.y);
+		catAnimator.SetFloat ("vSpeed", rigidBody.velocity.y);
 
 		float move = Input.GetAxis ("Horizontal");
-		GetComponent<Rigidbody2D> ().velocity = new Vector2 (move * top_speed, GetComponent<Rigidbody2D> ().velocity.y);
+		rigidBody.velocity = new Vector2 (move * top_speed, rigidBody.velocity.y);
 
 		catAnimator.SetFloat ("Speed", Mathf.Abs (move));
 
@@ -49,6 +49,24 @@ public class CatController : MonoBehaviour {
 			Flip ();
 		} else if (move < 0 && facing_right) {
 			Flip ();
+		}
+
+		Vector3 screenPos = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+
+		if (screenPos.y < -100f) {
+			rigidBody.AddForce (new Vector2 (0, 1500f));
+			rigidBody.freezeRotation = false;
+			rigidBody.AddTorque(15f);
+
+			foreach (CircleCollider2D c in GetComponents<CircleCollider2D> () ) {
+				c.enabled = false;
+			}
+				
+			GetComponent<BoxCollider2D> ().enabled = false;
+			GetComponentInChildren<BoxCollider2D> ().enabled = false;
+			GetComponent<PlatformEffector2D> ().enabled = false;
+
+
 		}
 	}
 
@@ -59,7 +77,7 @@ public class CatController : MonoBehaviour {
 			
 		if (grounded && Input.GetKeyDown (KeyCode.Space)) {
 			catAnimator.SetBool ("Ground", false);
-			GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jump_force));
+			rigidBody.AddForce(new Vector2(0, jump_force));
 		}
 	}
 
