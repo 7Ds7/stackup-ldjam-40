@@ -6,6 +6,7 @@ public class TubeDrawController : MonoBehaviour {
 
 	private string[] shapes;
 	public bool generated = true;
+	public bool generating = false;
 	private Animator animatorTube;
 
 	void Start () {
@@ -15,8 +16,9 @@ public class TubeDrawController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (animatorTube.GetCurrentAnimatorStateInfo(0).IsName("TubeDown") && generated == false){
+		if (animatorTube.GetCurrentAnimatorStateInfo(0).IsName("TubeDown") && generated == false && generating == false){
 			generated = true;
+			generating = true;
 			GenerateShape ();
 		}
 	}
@@ -40,6 +42,7 @@ public class TubeDrawController : MonoBehaviour {
 		GameObject shape = Instantiate (Resources.Load (shapes[ind]) as GameObject);
 		shape.transform.position = new Vector3 (transform.position.x, transform.position.y + 1f, -1.5f);
 		GameObject.Find ("Ground").GetComponent<StageController> ().currentTurn += 1;
+		generating = false;
 	}
 
 	IEnumerator GeneratingOn() {
