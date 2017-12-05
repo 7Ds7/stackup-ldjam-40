@@ -53,7 +53,7 @@ public class CameraScript : MonoBehaviour {
 		winState = false;
 		gameOver = false;
 		started = false;
-		timeToSlide = 15f;
+		timeToSlide = 2f;
 		craneAnchor = GameObject.Find ("CraneAnchor");
 		crane = GameObject.Find ("Crane");
 		tube = GameObject.Find ("TubeDraw");

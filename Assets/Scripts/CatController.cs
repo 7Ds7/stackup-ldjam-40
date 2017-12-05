@@ -22,6 +22,9 @@ public class CatController : MonoBehaviour {
 
 	public bool stopped;
 
+	AudioSource meow;
+
+
 	void Start() {
 		catAnimator = GetComponent<Animator> ();
 		stopped = false;
@@ -67,6 +70,7 @@ public class CatController : MonoBehaviour {
 			GetComponentInChildren<BoxCollider2D> ().enabled = false;
 			GetComponent<PlatformEffector2D> ().enabled = false;
 			Camera.main.GetComponent<CameraScript> ().gameOver = true;
+			GetComponent<AudioSource>().Play();
 			StartCoroutine (GameOverDelay ());
 
 		}
@@ -80,7 +84,6 @@ public class CatController : MonoBehaviour {
 		if (grounded && Input.GetKeyDown (KeyCode.Space)) {
 			catAnimator.SetBool ("Ground", false);
 			rigidBody.AddForce(new Vector2(0, jump_force));
-			gameObject.GetComponent<AudioSource> ().Play ();
 		}
 	}
 
