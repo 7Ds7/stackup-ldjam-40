@@ -36,7 +36,7 @@ public class TubeDrawController : MonoBehaviour {
 	void GenerateShape() {
 		int ind = Random.Range(0, shapes.Length - 1);
 		GameObject shape = Instantiate (Resources.Load (shapes[ind]) as GameObject);
-		shape.transform.position = new Vector3 (transform.position.x, transform.position.y + 2.2f, -1.5f);
+		shape.transform.position = new Vector3 (transform.position.x, transform.position.y + 3f, -1.5f);
 		animatorTube.SetBool ("Generating", !generated);
 
 	}
@@ -46,7 +46,7 @@ public class TubeDrawController : MonoBehaviour {
 			Debug.Log ("DrawSingle");
 			generated = false;
 			animatorTube.SetBool ("Generating", !generated);
-			yield return new WaitForSeconds(7f);
+			yield return new WaitForSeconds(5f);
 		}
 	}
 

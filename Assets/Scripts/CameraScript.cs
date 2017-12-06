@@ -53,7 +53,7 @@ public class CameraScript : MonoBehaviour {
 		winState = false;
 		gameOver = false;
 		started = false;
-		timeToSlide = 2f;
+		timeToSlide = 12f;
 		craneAnchor = GameObject.Find ("CraneAnchor");
 		crane = GameObject.Find ("Crane");
 		tube = GameObject.Find ("TubeDraw");
@@ -93,14 +93,6 @@ public class CameraScript : MonoBehaviour {
 			started = true;
 			StartCoroutine (Slide ());
 		}
-		//		timer += Time.deltaTime;
-		//		if (timer > waitTime) {
-		//			Debug.Log ("Timer is done");
-
-		//			//transform.position = Vector3.Lerp(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3(transform.position.x, transform.position.y - 10f, transform.position.z), 0.5f*Time.deltaTime);
-		//			timer = 0f;
-		//		}
-
 	}
 
 	IEnumerator Slide() {
