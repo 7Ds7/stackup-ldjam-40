@@ -57,23 +57,23 @@ public class CatController : MonoBehaviour {
 
 		Vector3 screenPos = Camera.main.WorldToScreenPoint(gameObject.transform.position);
 
-		if (screenPos.y < -80f) {
-			rigidBody.AddForce (new Vector2 (0, 1500f));
-			rigidBody.freezeRotation = false;
-			rigidBody.AddTorque(15f);
-
-			foreach (CircleCollider2D c in GetComponents<CircleCollider2D> () ) {
-				c.enabled = false;
-			}
-				
-			GetComponent<BoxCollider2D> ().enabled = false;
-			GetComponentInChildren<BoxCollider2D> ().enabled = false;
-			GetComponent<PlatformEffector2D> ().enabled = false;
-			Camera.main.GetComponent<CameraScript> ().gameOver = true;
-			GetComponent<AudioSource>().Play();
-			StartCoroutine (GameOverDelay ());
-
-		}
+//		if (screenPos.y < -80f) {
+//			rigidBody.AddForce (new Vector2 (0, 1500f));
+//			rigidBody.freezeRotation = false;
+//			rigidBody.AddTorque(15f);
+//
+//			foreach (CircleCollider2D c in GetComponents<CircleCollider2D> () ) {
+//				c.enabled = false;
+//			}
+//				
+//			GetComponent<BoxCollider2D> ().enabled = false;
+//			GetComponentInChildren<BoxCollider2D> ().enabled = false;
+//			GetComponent<PlatformEffector2D> ().enabled = false;
+//			Camera.main.GetComponent<CameraScript> ().gameOver = true;
+//			GetComponent<AudioSource>().Play();
+//			StartCoroutine (GameOverDelay ());
+//
+//		}
 	}
 
 	void Update() {

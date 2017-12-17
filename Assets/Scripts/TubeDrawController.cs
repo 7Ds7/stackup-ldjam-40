@@ -25,7 +25,7 @@ public class TubeDrawController : MonoBehaviour {
 
 
 	void Update() {
-		if (Input.GetButtonDown("Fire1")) {
+		if (Input.GetKeyDown(KeyCode.S)) {
 			Debug.Log ("Fire");
 			generated = false;
 			animatorTube.SetBool ("Generating", !generated);
@@ -72,7 +72,7 @@ public class TubeDrawController : MonoBehaviour {
 		foreach (GameObject go in GameObject.FindGameObjectsWithTag("Tutorial")) {
 			Destroy (go);
 		}
-		//StartCoroutine (GenerateOnGoing ());
+		StartCoroutine (GenerateOnGoing ());
 		yield return null;
 	}
 
@@ -83,7 +83,7 @@ public class TubeDrawController : MonoBehaviour {
 			GameObject shape = Instantiate (Resources.Load (shapes[ind]) as GameObject);
 			shape.transform.position = new Vector3 (transform.position.x + Random.Range(2.5f, 8f), transform.position.y + 10f, -1.5f);
 			batch--;
-			yield return new WaitForSeconds(Random.Range(5f, 10f));
+			yield return new WaitForSeconds(Random.Range(3f, 7f));
 		}
 
 		yield return null;
