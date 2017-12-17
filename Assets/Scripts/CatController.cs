@@ -57,7 +57,7 @@ public class CatController : MonoBehaviour {
 
 		Vector3 screenPos = Camera.main.WorldToScreenPoint(gameObject.transform.position);
 
-		if (screenPos.y < -100f) {
+		if (screenPos.y < -80f) {
 			rigidBody.AddForce (new Vector2 (0, 1500f));
 			rigidBody.freezeRotation = false;
 			rigidBody.AddTorque(15f);
@@ -80,8 +80,8 @@ public class CatController : MonoBehaviour {
 		if (stopped) {
 			return;
 		}
-			
-		if (grounded && Input.GetKeyDown (KeyCode.Space)) {
+
+		if (grounded && Input.GetKeyDown (KeyCode.W)) {
 			catAnimator.SetBool ("Ground", false);
 			rigidBody.AddForce(new Vector2(0, jump_force));
 		}

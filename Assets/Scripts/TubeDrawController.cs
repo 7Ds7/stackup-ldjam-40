@@ -20,16 +20,26 @@ public class TubeDrawController : MonoBehaviour {
 		batch = 30;
 		generated_count = 0;
 		StartCoroutine (GenerateFirstBatch ());
-		StartCoroutine(DrawSingle());
+		//StartCoroutine(DrawSingle());
 	}
 
 
-	// Update is called once per frame
-	void FixedUpdate () {
+	void Update() {
+		if (Input.GetButtonDown("Fire1")) {
+			Debug.Log ("Fire");
+			generated = false;
+			animatorTube.SetBool ("Generating", !generated);
+		}
 		if (animatorTube.GetCurrentAnimatorStateInfo(0).IsName("TubeDown") && generated == false ){
 			generated = true;
 			GenerateShape ();
 		}
+
+	}
+	// Update is called once per frame
+	void FixedUpdate () {
+		
+
 	}
 
 
@@ -38,7 +48,6 @@ public class TubeDrawController : MonoBehaviour {
 		GameObject shape = Instantiate (Resources.Load (shapes[ind]) as GameObject);
 		shape.transform.position = new Vector3 (transform.position.x, transform.position.y + 3f, -1.5f);
 		animatorTube.SetBool ("Generating", !generated);
-
 	}
 
 	IEnumerator DrawSingle() {
@@ -63,7 +72,7 @@ public class TubeDrawController : MonoBehaviour {
 		foreach (GameObject go in GameObject.FindGameObjectsWithTag("Tutorial")) {
 			Destroy (go);
 		}
-		StartCoroutine (GenerateOnGoing ());
+		//StartCoroutine (GenerateOnGoing ());
 		yield return null;
 	}
 

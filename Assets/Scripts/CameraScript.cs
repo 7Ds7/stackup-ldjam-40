@@ -42,7 +42,7 @@ public class CameraScript : MonoBehaviour {
 	private float timeToSlide;
 	public bool gameOver;
 	public bool winState;
-	private bool started;
+	//private bool started;
 
 
 	//The Time.time value when we started the interpolation
@@ -52,8 +52,8 @@ public class CameraScript : MonoBehaviour {
 		startTimer = false;
 		winState = false;
 		gameOver = false;
-		started = false;
-		timeToSlide = 12f;
+		//started = false;
+		timeToSlide = 0f;
 		craneAnchor = GameObject.Find ("CraneAnchor");
 		crane = GameObject.Find ("Crane");
 		tube = GameObject.Find ("TubeDraw");
@@ -87,11 +87,27 @@ public class CameraScript : MonoBehaviour {
 
 	}
 
+	public float speedStart;		
+	public float increasePerSecond;		
+	private float secondsElapsed = 0;
 	void Update()
 	{
-		if (startTimer && !started) {
-			started = true;
-			StartCoroutine (Slide ());
+//		if (!startTimer && Time.timeSinceLevelLoad >= 7f) {
+//			startTimer = true;
+//			foreach (GameObject go in GameObject.FindGameObjectsWithTag("Tutorial")) {
+//				Destroy (go);
+//			}
+//		}
+
+//		if (startTimer && !started) {
+		if (startTimer && !gameOver && !winState) {
+			//started = true;
+		//	StartCoroutine (Slide ());
+			transform.Translate(Vector3.up * Time.deltaTime * (increasePerSecond * secondsElapsed + speedStart));
+			craneAnchor.transform.Translate(Vector3.up * Time.deltaTime * (increasePerSecond * secondsElapsed + speedStart));
+			crane.transform.Translate(Vector3.up * Time.deltaTime * (increasePerSecond * secondsElapsed + speedStart));
+			tube.transform.Translate(Vector3.up * Time.deltaTime * (increasePerSecond * secondsElapsed + speedStart));
+			secondsElapsed += Time.deltaTime;		
 		}
 	}
 
