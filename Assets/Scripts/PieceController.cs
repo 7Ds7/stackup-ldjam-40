@@ -20,7 +20,8 @@ public class PieceController : MonoBehaviour {
 	void Update () {
 		
 		
-		if (gLeft && gRight) {
+		//if (gLeft && gRight) {
+		if (gLeft || gRight) {
 			transform.SetParent(GameObject.Find("CraneClaw").transform);
 		}
 
